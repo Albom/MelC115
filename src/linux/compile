@@ -1,0 +1,2 @@
+#!/bin/sh
+gcc `pkg-config --cflags --libs gtk+-2.0` -o melc115 melc115.c
