@@ -1,4 +1,4 @@
-#include "all.h"
+#include "c115.h"
 
 
 //----------------------------------------------------------------------
@@ -42,7 +42,7 @@ char szfilter5[] = { "MIDI files (*.mid)\0*.mid\0All files (*.*)\0*.*\0"};
 char szfilter6[] = { "Файлы MIDI (*.mid)\0*.mid\0Все файлы (*.*)\0*.*\0"};
 
 
-char szAppTitle[] = { "Mel C115 v4.6" };
+char szAppTitle[] = { "Mel C115 v4.7" };
 
 
 //----------------------------------------------------------------------
@@ -885,29 +885,10 @@ SendMessage(hEdit, WM_SETTEXT, (WPARAM) 0, (LPARAM) tmp);
 
 //----------------------------------------------------------------------
 
-void PCSpeak9x(DWORD f, DWORD d)
-{
-/*
-__asm
-{
-
-in al, 0x61
-push ax
-;cli
-
-}
-*/
-}
-
-//----------------------------------------------------------------------
-
 DWORD Swap32(DWORD x)
 {
 
-_asm{
-mov EAX, x
-bswap EAX
-}
+return ( (x&0xff) << 24 ) | ( (x&0xff00) << 8 ) | ( (x&0xff0000) >> 8 ) | ( (x&0xff000000) >> 24 );
 
 }
 
@@ -917,10 +898,7 @@ bswap EAX
 WORD Swap16(WORD x)
 {
 
-_asm {
-	mov AX, x
-  xchg ah,al
-}
+return ( (x&0xff) << 8 ) | ( (x&0xff00) >> 8 ) ;
 
 }
 
@@ -942,7 +920,7 @@ while((value>>=7)>0)
 	
 for(;;)
 	{
-	*(b+len) = char (buffer);
+	*(b+len) = (char) (buffer);
 	len++;
 	if(buffer&0x80)
 		buffer>>=8;
@@ -979,7 +957,7 @@ int o = 1;
 char b[1024*16];
 char t[512];
 char _do[3];
-char _end[]={char(0xff), char(0x2f), char(0x00)};
+char _end[]={(char)(0xff), (char)(0x2f), (char)(0x00)};
 
 
 char fn[MAX_PATH];
@@ -1020,8 +998,8 @@ if ( !GetSaveFileName(&ofn) )
 	return;
 
 
-_do[0] = char (0x90);
-_do[2] = char (0x60);
+_do[0] = (char) (0x90);
+_do[2] = (char) (0x60);
 
 f = CreateFile(fn, GENERIC_WRITE, 0, NULL, 
 				CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -1071,27 +1049,27 @@ for (i = 0; i < lstrlen(buf); i++)
 						{
 						case 'c':
 							_do[0] = (char)0x90;
-							_do[1] = char (49+12*o);
+							_do[1] = (char) (49+12*o);
 							break;
 
 						case 'd':
 							_do[0] = (char)0x90;
-							_do[1] = char (51+12*o);
+							_do[1] = (char) (51+12*o);
 							break;
 
 						case 'f':
 							_do[0] = (char)0x90;
-							_do[1] = char (54+12*o);
+							_do[1] = (char) (54+12*o);
 							break;
 
 						case 'g':
 							_do[0] = (char)0x90;
-							_do[1] = char (56+12*o);
+							_do[1] = (char) (56+12*o);
 							break;
 
 						case 'a':
 							_do[0] = (char)0x90;
-							_do[1] = char (58+12*o);
+							_do[1] = (char) (58+12*o);
 							break;
 
 						};
@@ -1111,27 +1089,27 @@ for (i = 0; i < lstrlen(buf); i++)
 						{
 						case 'd':
 							_do[0] = (char)0x90;
-							_do[1] = char (49+12*o);
+							_do[1] = (char) (49+12*o);
 							break;
 
 						case 'e':
 							_do[0] = (char)0x90;
-							_do[1] = char (51+12*o);
+							_do[1] = (char) (51+12*o);
 							break;
 
 						case 'g':
 							_do[0] = (char)0x90;
-							_do[1] = char (54+12*o);
+							_do[1] = (char) (54+12*o);
 							break;
 
 						case 'a':
 							_do[0] = (char)0x90;
-							_do[1] = char (56+12*o);
+							_do[1] = (char) (56+12*o);
 							break;
 
 						case 'b':
 							_do[0] = (char)0x90;
-							_do[1] = char (58+12*o);
+							_do[1] = (char) (58+12*o);
 							break;
 						};
 
@@ -1150,37 +1128,37 @@ for (i = 0; i < lstrlen(buf); i++)
 						{
 						case 'c':
 							_do[0] = (char)0x90;
-							_do[1] = char (48+12*o);
+							_do[1] = (char) (48+12*o);
 							break;
 
 						case 'd':
 							_do[0] = (char)0x90;
-							_do[1] = char (50+12*o);
+							_do[1] = (char) (50+12*o);
 							break;
 
 						case 'e':
 							_do[0] = (char)0x90;
-							_do[1] = char (52+12*o);
+							_do[1] = (char) (52+12*o);
 							break;
 
 						case 'f':
 							_do[0] = (char)0x90;
-							_do[1] = char (53+12*o);
+							_do[1] = (char) (53+12*o);
 							break;
 
 						case 'g':
 							_do[0] = (char)0x90;
-							_do[1] = char (55+12*o);
+							_do[1] = (char) (55+12*o);
 							break;
 
 						case 'a':
 							_do[0] = (char)0x90;
-							_do[1] = char (57+12*o);
+							_do[1] = (char) (57+12*o);
 							break;
 
 						case 'b':
 							_do[0] = (char)0x90;
-							_do[1] = char (59+12*o);
+							_do[1] = (char) (59+12*o);
 							break;
 
 						case 'r':
@@ -1240,7 +1218,7 @@ if (Out)
 void MidiOutChan (BYTE b1, BYTE b2, BYTE b3) 
 {
 
-MidiOut ((((b3 << 8) | b2) << 8) | (b1 | BYTE (Chan)));
+MidiOut ((((b3 << 8) | b2) << 8) | (b1 | (BYTE) (Chan)));
 
 }
 
@@ -1306,7 +1284,7 @@ switch (f)
 	};
 
 
-MidiOutChan(0x90, BYTE ((48+x+12*(O-3))), 100);
+MidiOutChan(0x90, (BYTE) ((48+x+12*(O-3))), 100);
 Sleep(2*d);
 }
 
@@ -1787,13 +1765,6 @@ switch (msg)
 			SendDlgItemMessage(hwnd, 101, WM_SETFONT,(WPARAM)(HFONT)CreateFont(-24, 0, 0, 0, FW_BOLD, 0, 0, 0, 0, 0, 0, 0, 0, "Arial"), 0);
 			SetDlgItemText(hwnd, 101, szAppTitle);
 
-			if (eng)
-				{
-				SetWindowText(hwnd, "About");
-				SetDlgItemText(hwnd, 102, "© 2007 Oleksandr Bogomaz");
-				}
-
-		//	SetDlgItemText(hwnd, 105, "Z540958548096\r\nE800407922706\r\nR733778429919\r\nU619452519173");
 			SetFocus(GetDlgItem(hwnd, 101));
 			break;
 
@@ -1963,10 +1934,19 @@ void Beep9x(DWORD f, DWORD d)
 int i;
 
 char table[32*1024];
-char head[] = {	0x52, 0x49, 0x46, 0x46, 0x32, 0, 0, 0, 0x57, 0x41, 0x56, 0x45, 0x66,
-				0x6D, 0x74, 0x20, 0x12, 0, 0, 0, 1, 0, 1, 0, 0x22, 0x56, 0, 0, 0x44,
-				char(0xAC), 0, 0, 2, 0, 0x10, 0, 0, 0, 0x66, 0x61, 0x63, 0x74, 4, 0, 0, 0, 
-				0, 0, 0, 0, 0x64, 0x61, 0x74, 0x61};
+char head[] = {	0x52, 0x49, 0x46, 0x46, // RIFF
+				0x32, 0, 0, 0, 
+				0x57, 0x41, 0x56, 0x45, //WAVE
+				0x66, 0x6D, 0x74, 0x20, // fmt
+				0x10, 0, 0, 0, 
+				1, 0, 
+				1, 0, 
+				0x22, 0x56, 0, 0, 
+				0x44, (char)(0xAC), 0, 0, 
+				2, 0, 
+				0x10, 0, 
+				0x64, 0x61, 0x74, 0x61 // data
+				};
 HANDLE	hf;
 DWORD	r;
 UINT	len;
@@ -1977,7 +1957,7 @@ len=40*d;
 
 
 for (i=0; i<32*1024; i++)
-	table[i] = char ( sin(f*(2*M_PI)*((float)i)/(32*1024))*100 );
+	table[i] = (char) ( sin(f*(2*M_PI)*((float)i)/(32*1024))*100 );
 
 hf = CreateFile(tempfile, GENERIC_WRITE, 0, NULL, 
 				CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -1988,9 +1968,7 @@ WriteFile (hf, &len, 4, &r, NULL);
 WriteFile (hf, table, 32*1024, &r, NULL);
 CloseHandle(hf);
 
-
-
-PlaySound(tempfile, NULL, SND_SYNC);
+PlaySound(tempfile, NULL, SND_FILENAME|SND_SYNC);
 PlaySound(NULL, NULL, SND_PURGE);
 
 DeleteFile(tempfile);
@@ -2397,7 +2375,7 @@ switch (msg)
 			SendMessage (hEdit, EM_LIMITTEXT, 256, 0L) ;
 
 			GetCurrentDirectory(MAX_PATH-1, inifile);
-			lstrcat (inifile, "\\melc115.ini");
+			lstrcat (inifile, "\\c115.ini");
 
 			memset (&find, 0, sizeof(find) );
 
@@ -2919,10 +2897,6 @@ switch (msg)
 						CheckMenuItem(GetMenu(hWnd), CMD_ONTOP, MF_UNCHECKED);
 
 					ReadRecent(FALSE);
-					break;
-
-				case CMD_SITE:
-					ShellExecute( NULL, "open", "http://albom06.boom.ru",NULL, NULL, SW_SHOWNORMAL);
 					break;
 
 				case CMD_NEXT:

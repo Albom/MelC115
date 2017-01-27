@@ -1,0 +1,237 @@
+#include <windows.h>
+#include <winuser.h>
+
+
+101 BITMAP "res/101.bmp"
+102 BITMAP "res/102.bmp"
+
+HAND CURSOR "res/HAND.cur"
+C115ICON ICON "res/C115ICON.ico"
+ZC115ICON ICON "res/ZC115ICON.ico"
+
+MENU_ENG MENU
+LANGUAGE 0x0C00, 0x03
+{
+POPUP "&File"
+{
+	MENUITEM "&New\tCtrl+N",  10000
+	MENUITEM "&Open ...\tCtrl+O",  10001
+	MENUITEM SEPARATOR
+	MENUITEM "S&ave\tCtrl+S",  10009
+	MENUITEM "Save &As ...",  10002
+	MENUITEM SEPARATOR
+	POPUP "Import"
+	{
+		MENUITEM "Nokia ...\tAlt+I",  10038
+	}
+	POPUP "Export"
+	{
+		MENUITEM "RTTTL ...\tCtrl+R",  10034
+		MENUITEM "MIDI ...\tCtrl+M",  10035
+		MENUITEM "Nokia ...\tCtrl+I",  10036
+		MENUITEM "Siemens ...\tCtrl+E",  10037
+	}
+	MENUITEM SEPARATOR
+	MENUITEM "S&end melody ...",  10016
+	MENUITEM SEPARATOR
+	MENUITEM "E&xit\tAlt+F4",  10003
+}
+POPUP "&Edit"
+{
+	MENUITEM "&Undo\tCtrl+Z",  10012
+	MENUITEM "&Redo\tCtrl+Y",  10026
+	MENUITEM SEPARATOR
+	MENUITEM "Cu&t\tCtrl+X",  10013
+	MENUITEM "&Copy\tCtrl+C",  10014
+	MENUITEM "&Paste\tCtrl+V",  10015
+	MENUITEM SEPARATOR
+	MENUITEM "&Delete\tDel",  10021
+	MENUITEM SEPARATOR
+	MENUITEM "Select All\tCtrl+A",  10022
+}
+POPUP "&View"
+{
+	POPUP "&Font"
+	{
+		MENUITEM "Choose ...\tCtrl+D",  10006
+		MENUITEM SEPARATOR
+		MENUITEM "Default",  10007
+	}
+	POPUP "&Color"
+	{
+		MENUITEM "Choose text color ...",  10023
+		MENUITEM "Choose background color ...",  10024
+		MENUITEM SEPARATOR
+		MENUITEM "Default",  10025
+	}
+	MENUITEM "Minimize to &tray",  10020
+	MENUITEM "&Watch",  10008,  CHECKED
+	MENUITEM "Always on top",  10029
+}
+POPUP "&Language"
+{
+	MENUITEM "&English",  10017
+	MENUITEM "&Russian",  10018
+}
+POPUP "&Sound"
+{
+	MENUITEM "Wave",  10030,  CHECKED
+	MENUITEM "MIDI",  10031
+	MENUITEM "PC speaker",  10033
+	MENUITEM SEPARATOR
+	MENUITEM "Volume\tAlt+V",  10032
+}
+POPUP "&?"
+{
+	MENUITEM "&Help ...",  10004
+	MENUITEM "W&eb-site ...",  10019
+	MENUITEM SEPARATOR
+	MENUITEM "&About ...",  10005
+}
+}
+
+
+MENU_RUS MENU
+LANGUAGE 0x0419, 0x01
+{
+POPUP "Файл"
+{
+	MENUITEM "Создать\tCtrl+N",  10000
+	MENUITEM "Открыть ...\tCtrl+O",  10001
+	MENUITEM SEPARATOR
+	MENUITEM "Сохранить\tCtrl+S",  10009
+	MENUITEM "Сохранить как ...",  10002
+	MENUITEM SEPARATOR
+	POPUP "Импорт"
+	{
+		MENUITEM "Nokia ...\tAlt+I",  10038
+	}
+	POPUP "Экспорт"
+	{
+		MENUITEM "RTTTL ...\tCtrl+R",  10034
+		MENUITEM "MIDI ...\tCtrl+M",  10035
+		MENUITEM "Nokia ...\tCtrl+I",  10036
+		MENUITEM "Siemens ...\tCtrl+E",  10037
+	}
+	MENUITEM SEPARATOR
+	MENUITEM "Отправить разработчику программы ...",  10016
+	MENUITEM SEPARATOR
+	MENUITEM "Выход\tAlt+F4",  10003
+}
+POPUP "Правка"
+{
+	MENUITEM "Отменить\tCtrl+Z",  10012
+	MENUITEM "Повторить\tCtrl+Y",  10026
+	MENUITEM SEPARATOR
+	MENUITEM "Вырезать\tCtrl+X",  10013
+	MENUITEM "Копировать\tCtrl+C",  10014
+	MENUITEM "Вставить\tCtrl+V",  10015
+	MENUITEM SEPARATOR
+	MENUITEM "Удалить\tDel",  10021
+	MENUITEM SEPARATOR
+	MENUITEM "Выделить все\tCtrl+A",  10022
+}
+POPUP "Вид"
+{
+	POPUP "Шрифт"
+	{
+		MENUITEM "Выбрать ...\tCtrl+D",  10006
+		MENUITEM SEPARATOR
+		MENUITEM "По умолчанию",  10007
+	}
+	POPUP "Цвет"
+	{
+		MENUITEM "Выбрать цвет текста ...",  10023
+		MENUITEM "Выбрать цвет фона ...",  10024
+		MENUITEM SEPARATOR
+		MENUITEM "По умолчанию",  10025
+	}
+	MENUITEM "Сворачивать в лоток",  10020
+	MENUITEM "Слежение",  10008,  CHECKED
+	MENUITEM "Поверх других окон",  10029
+}
+POPUP "Язык"
+{
+	MENUITEM "Английский",  10017
+	MENUITEM "Русский",  10018
+}
+POPUP "Звук"
+{
+	MENUITEM "Wave",  10030,  CHECKED
+	MENUITEM "Миди",  10031
+	MENUITEM "Встроенный динамик",  10033
+	MENUITEM SEPARATOR
+	MENUITEM "Громкость\tAlt+V",  10032
+}
+POPUP "?"
+{
+	MENUITEM "Помощь ...",  10004
+	MENUITEM "Веб-сайт ...",  10019
+	MENUITEM SEPARATOR
+	MENUITEM "О программе ...",  10005
+}
+}
+
+
+KEYS ACCELERATORS
+{
+	"A", 10022, NOINVERT, CONTROL, VIRTKEY
+	"C", 10014, NOINVERT, CONTROL, VIRTKEY
+	"D", 10006, NOINVERT, CONTROL, VIRTKEY
+	"E", 10037, NOINVERT, CONTROL, VIRTKEY
+	"I", 10036, NOINVERT, CONTROL, VIRTKEY
+	"I", 10038, NOINVERT, ALT, VIRTKEY
+	"M", 10035, NOINVERT, CONTROL, VIRTKEY
+	"N", 10000, NOINVERT, CONTROL, VIRTKEY
+	"O", 10001, NOINVERT, CONTROL, VIRTKEY
+	"R", 10034, NOINVERT, CONTROL, VIRTKEY
+	"S", 10009, NOINVERT, CONTROL, VIRTKEY
+	"V", 10015, NOINVERT, CONTROL, VIRTKEY
+	"V", 10032, NOINVERT, ALT, VIRTKEY
+	"X", 10013, NOINVERT, CONTROL, VIRTKEY
+	"Y", 10026, NOINVERT, CONTROL, VIRTKEY
+	"Z", 10012, NOINVERT, CONTROL, VIRTKEY
+}
+
+
+ABOUTDLG DIALOG 0, 0, 178, 78
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About..."
+CLASS  "aboutdlg"
+FONT 10, "MS Sans Serif"
+{
+   CONTROL "Mel C115", 101, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 82, 9, 85, 19 
+   CONTROL "mailto: albom85@yandex.ru", 100, "STATIC", SS_RIGHT | SS_NOTIFY | WS_CHILD | WS_VISIBLE | WS_GROUP, 81, 64, 86, 10 
+   CONTROL "© 2006-2017 O. Bogomaz", 102, "STATIC", SS_RIGHT | WS_CHILD | WS_VISIBLE | WS_GROUP, 61, 50, 106, 10 
+   CONTROL "", 501, "STATIC", SS_BLACKRECT | WS_CHILD | WS_VISIBLE, 59, 34, 108, 1 
+   CONTROL "", -1, "STATIC", SS_WHITERECT | WS_CHILD | WS_VISIBLE | WS_GROUP, 0, 0, 53, 78 
+   CONTROL 102, 0, "STATIC", SS_BITMAP | WS_CHILD | WS_VISIBLE | WS_GROUP, 0, 3, 50, 70 
+}
+
+
+1 VERSIONINFO
+FILEVERSION 4,7,0,1
+PRODUCTVERSION 4,7,0,1
+FILEOS 0x40004
+FILETYPE 0x1
+{
+   BLOCK "StringFileInfo"
+    { 
+        BLOCK "040904b0"
+        {
+            VALUE "Comments",         "\0"
+            VALUE "CompanyName",      "\0"
+            VALUE "FileDescription",  "Simple melody editor\0"
+            VALUE "FileVersion",      "4.7.0.1\0"
+            VALUE "InternalName",     "MelC115\0"
+            VALUE "LegalCopyright",   "© 2006-2017 Oleksandr Bogomaz\0"
+            VALUE "OriginalFilename", "c115.exe\0"
+            VALUE "ProductName",      "MelC115\0"
+            VALUE "ProductVersion",   "4.7.0.1\0"
+        } 
+    }
+	    BLOCK "VarFileInfo"
+    {
+        VALUE "Translation", 0x409, 1200
+    }
+}

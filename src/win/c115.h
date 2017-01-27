@@ -4,6 +4,10 @@
 #include	<richedit.h>
 #include	<math.h>
 
+#ifndef TBSTYLE_FLAT
+#define TBSTYLE_FLAT  0x0800
+#endif
+
 //----------------------------------------------------------------------
 
 #ifndef M_PI
@@ -35,7 +39,6 @@
 #define		CMD_ENG		10017
 #define		CMD_RUS		10018
 
-#define		CMD_SITE	10019
 #define		CMD_TRAY	10020
 
 #define		CMD_UNDO	10012
